@@ -1,0 +1,21 @@
+<p id="desc"><a class ="link" href="xxx">链接</a></p>
+-var text = "abc"
+p#desc
+    a.link(href="xxx") 链接
+    span #{text}
+if isText
+    p aaa
+else
+    p bbb
+-var obj ={a:1,b:2}
+-for(var k in obj)
+    p=obj[k]
+
+-each v,key in obj
+    p #{key}:#{v}
+
+mixin sec(name)
+    p abc #{name}
+
++sec(1)
++sec(2)

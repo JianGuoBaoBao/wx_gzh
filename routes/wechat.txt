@@ -1,0 +1,118 @@
+/*1.0*/
+console.log('wx.js');
+/*尝试使用wechat模块改写程序*/
+const wechat = require('wechat');
+
+var express = require('express');
+var router = express.Router();
+/*验证url是否畅通*/
+//这里的路径设为wx,这里的token必须与微信后台一致
+router.get('/',function(req,res,next){
+    var token ='token';
+    //获取微信服务器发来的参数
+    var signature = req.query.signature;
+    var timestamp = req.query.timestamp;
+    var echostr = req.query.echostr;
+    var nonce = req.query.nonce;
+
+    //按字典进行排序
+    var oriArray = [nonce,timestamp,token];
+    oriArray.sort();
+    //sha1加密
+    var original = oriArray.join('');
+    var jsSHA = require('jssha');//加密模块，自己添加
+    var shaObj = new jsSHA("SHA-1",'TEXT');
+    shaObj.update(original);
+    var scyptoString = shaObj.getHash('HEX');
+    console.log(signature);
+    console.log(scyptoString);
+    //判断签名是否相同
+    if(signature == scyptoString){
+        console.log('true');
+        //验证成功
+        res.status(200).send(echostr);
+    }else{
+        console.log('false');
+        res.send('error');
+        return false;
+    }
+    next();
+});
+
+
+/*用于接收微信发出的xml信息*/
+/*var parseString = require('xml2js').parseString;
+router.post('/',function(req,res){
+   try{
+       var buffer =[];
+       //监听data用于接收数据
+       req.on('data',function(data){
+           buffer.push(data);
+       });
+       //监听end事件 用于处理接收完成的数据
+       req.on('end',function(){
+           //输出接收完成的数据
+           parseString(Buffer.concat(buffer).toString('utf-8'),{explicitArray:false},function (err,result) {
+                if(err){
+                    //打印错误信息
+                    console.log(err);
+                }else{
+                    //打印解析结果
+                    console.log(result);
+                    result = result.xml;
+                    var toUser = result.ToUserName; //接收方微信
+                    var fromUser = result.FromUserName;//发送仿微信
+                    if(result.Event=='subscribe'){//订阅
+                        //回复消息
+                        var xml=returntext(fromUser,toUser,'欢迎来到坚果宝宝的公众号');
+                        console.log(xml);
+
+                        /!*保存用户信息*!/
+
+                        res.send(xml);
+                    }else if(result.Event=='unsubscribe'){//取消订阅
+                        /!*修改用户的状态*!/
+                        console.log(result.ToUserName+'取消订阅了公众号');
+                    } else{/!*发送与返回text*!/
+                        var xml=returntext(fromUser,toUser,result.Content);
+                        console.log(xml);
+                        res.send(xml);
+                    }
+                }
+           })
+       });
+   }catch (e) {
+        console.log(e);
+   }
+});*/
+//回复文本消息
+/*function returntext(toUser, fromUser, content){
+    var xmlContent =  "<xml><ToUserName><![CDATA["+ toUser +"]]></ToUserName>";
+    xmlContent += "<FromUserName><![CDATA["+ fromUser +"]]></FromUserName>";
+    xmlContent += "<CreateTime>"+ new Date().getTime() +"</CreateTime>";
+    xmlContent += "<MsgType><![CDATA[text]]></MsgType>";
+    xmlContent += "<Content><![CDATA["+ content +"]]></Content></xml>";
+    return xmlContent;
+}*/
+
+/*改写*/
+var config = {
+    token : 'token',
+    appid : 'wx2c0e476b95a9b654',
+    appsecret :'d34520690a55b94dca302f955fca1f87',
+    encodingAESKey : ''
+};
+
+router.post('/',wechat(config,function(req,res,next){
+    console.log(req.weixin);
+    var message = req.weixin;
+    //文本
+    if (message.Content === '1') {
+
+        res.reply('hehe');
+    }
+
+}));
+
+
+module.exports = router;

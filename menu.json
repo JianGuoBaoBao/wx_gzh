@@ -1,0 +1,60 @@
+{
+  "button":[
+    {
+      "name":"常用网址",
+      "sub_button":[
+        {
+          "type":"view",
+          "name":"nodejs",
+          "url":"http://nodejs.cn/api/"
+        },
+        {
+          "type":"view",
+          "name":"npmjs",
+          "url":"https://www.npmjs.com/"
+        },{
+          "type":"view",
+          "name":"es6",
+          "url":"http://es6.ruanyifeng.com/"
+        },{
+          "type":"view",
+          "name":"babeljs",
+          "url":"https://babeljs.io/"
+        },{
+          "type":"view",
+          "name":"MDN",
+          "url":"https://developer.mozilla.org/zh-CN/"
+        }]
+
+    },
+    {
+      "name":"学子商城",
+      "sub_button":[
+        {
+          "type":"view",
+          "name":"官网",
+          "url":"http://www.codeboy.com"
+        },
+        {
+          "type":"click",
+          "name":"赞一下我们",
+          "key":"V1001_GOOD"
+        }]
+    },{
+        "name":"扫码",
+         "sub_button": [
+           {
+             "type": "scancode_waitmsg",
+             "name": "扫码带提示",
+             "key": "rselfmenu_0_0"
+
+           },{
+             "type": "scancode_push",
+             "name": "扫码推事件",
+             "key": "rselfmenu_0_1"
+           }
+         ]
+
+    }
+  ]
+}
