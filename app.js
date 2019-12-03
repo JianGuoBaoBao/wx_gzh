@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var wxRouter = require('./routes/wx');//首次接入微信，自动回复功能
 var doRouter = require('./routes/do');//业务逻辑
+var mongoRouter = require('./routes/mongApi')
+
 var app = express();
 
 // view engine setup
@@ -20,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/wx',wxRouter);
 app.use('/do',doRouter);
+app.use('/mongo',mongoRouter);
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {
