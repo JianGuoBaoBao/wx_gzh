@@ -1,10 +1,13 @@
-const mongoose  = require('mongodb')
-const url = 'mongodb://localhost:27017/runoob'
-mongoose.connect(url)
+const mongoose = require('mongoose');
+const data = require('../config/data');
 
-const db = mongoose.connection
-db.on('error',console.error.bind(console,'connection error:'))
-db.once('open',function () {
-    console.log("Successful connection to"+ url);
-})
-module.exports = db
+module.exports = function () {
+    var db = mongoose.connect(data.mongodb,{useNewUrlParser:true},function (err) {
+        if (err) {
+            console.log("Connection Error:" +err);
+        } else {
+            console.log("Connection success!");
+        }
+    }); // 连接数据库
+    return db;
+};

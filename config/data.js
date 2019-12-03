@@ -52,6 +52,9 @@ const scData ={
     },//若新增的是多图文素材，则此处应还有几段articles结构
     ]*/
 }
+const mongodb = "mongodb://127.0.0.1:27017/runoob";
+
 exports.tempData = tempData;
 exports.userList = userList;
 exports.scData = scData;
+exports.mongodb =mongodb;
