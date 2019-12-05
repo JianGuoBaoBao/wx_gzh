@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 var DATABASE = "wechat";
-var pool = mysql.createPool({
-    host:'127.0.0.1',
+var mySqlpool = mysql.createPool({
+    host:'localhost',
     user:'root',
     password:'',
     port:'3306',
@@ -21,7 +21,7 @@ var person={
 }
 
 //可以传对象，没有传入的值默认为null
-pool.query('update  xz_user set ? where uid=?',[person,5],(err,result)=>{
+mySqlpool.query('update  xz_user set ? where uid=?',[person,5],(err,result)=>{
     if(err)throw err;
     console.log(result);
 });
@@ -30,4 +30,4 @@ pool.query('update  xz_user set ? where uid=?',[person,5],(err,result)=>{
 
 
 //导出连接
-module.exports=pool;
+module.exports=mySqlpool;

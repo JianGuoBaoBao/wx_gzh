@@ -1,4 +1,4 @@
-const pool = require('../config/pool');
+const pool = require('../config/mySqlpool');
 const request = require('request');
 const express = require('express');
 const router = express.Router();

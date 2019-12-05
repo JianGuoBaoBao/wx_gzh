@@ -1,6 +1,6 @@
 const request = require('request');
 const schedule = require('node-schedule');
-const pool = require('./pool');
+const pool = require('./mySqlpool');
 
 const appID ='wx2c0e476b95a9b654';
 const appsecret='d34520690a55b94dca302f955fca1f87';
