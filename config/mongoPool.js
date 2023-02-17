@@ -2,7 +2,8 @@
 建立数据库连接
  */
 const mongoose = require('mongoose')
-const url = "mongodb://localhost:27017/runoob"
+const url = "mongodb://localhost:27017/itcast"
+//连接数据库
 mongoose.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection;

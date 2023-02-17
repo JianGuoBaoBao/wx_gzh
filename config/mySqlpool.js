@@ -3,7 +3,7 @@ var DATABASE = "wechat";
 var mySqlpool = mysql.createPool({
     host:'localhost',
     user:'root',
-    password:'',
+    password:'123456',
     port:'3306',
     database: DATABASE,
     connectionLimit: 20

@@ -22,6 +22,7 @@
     "sha1": "^1.1.1",
     "wechat": "^2.1.0",
     "wechat-oauth": "^1.5.0",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+    "mongodb": "latest"
   }
 }

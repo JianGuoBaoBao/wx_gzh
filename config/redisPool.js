@@ -5,5 +5,5 @@ var redis = require('redis'),
     client = redis.createClient(RDS_PORT, RDS_HOST, RDS_OPTS);
 
 client.on('ready', function(res){
-    console.log('ready')
+    console.log('redis ready')
 })
